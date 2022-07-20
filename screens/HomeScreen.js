@@ -1,21 +1,23 @@
 import react, { useState, useEffect } from "react";
 import { Image, StyleSheet, Text, View, StatusBar, Platform, SafeAreaView,ScrollView, Button,TouchableOpacity,  requireNativeComponent  } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import * as Linking from 'expo-linking';
 
 const width = '47%';
 export default function Home({route,navigation}){
     // const { lang } = route?.params;
     
     const OpenStore = async () => {
-        navigation.navigate(
-            'Browser',
-            { url: 'https://ingabo.store' }
-        )
+        Linking.openURL('https://ingabo.store');
+        // navigation.navigate(
+        //     'Browser',
+        //     { url: 'https://ingabo.store' }
+        // )
     }
     
     return(
         <SafeAreaView style={{flex:1, paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0}}>
-            
+            <StatusBar backgroundColor = "#fff" barStyle = "dark-content" hidden = {false} translucent = {true}/>
             <ScrollView>
                 
                 <View style={{flex: 1, flexDirection: 'row',paddingTop: 70}}>

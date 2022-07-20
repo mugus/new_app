@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Image, StyleSheet, Text, View, SafeAreaView,Button, ScrollView, TouchableOpacity, FlatList } from 'react-native';
+import { Image, StyleSheet, Text, View, SafeAreaView,Button, ScrollView, TouchableOpacity, FlatList, StatusBar } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-// import * as data from '../../database.json'
+import * as Linking from 'expo-linking';
 import axios from 'axios';
 
 // const database = require('../../database.json');
@@ -11,10 +11,11 @@ export default function DianosisDetailScreen({route, navigation}){
     const [details, setDetails] = useState([]);
 
     const OpenStore = async () => {
-        navigation.navigate(
-            'Browser',
-            { url: 'https://ingabo.store' }
-        )
+        Linking.openURL('https://ingabo.store');
+        // navigation.navigate(
+        //     'Browser',
+        //     { url: 'https://ingabo.store' }
+        // )
     }
 
     useEffect(() => {
@@ -26,9 +27,10 @@ export default function DianosisDetailScreen({route, navigation}){
         })
     }, []);
     
-    
+    console.log(details.recommendation_products);
     return(
         <SafeAreaView>
+            <StatusBar backgroundColor = "#fff" barStyle = "dark-content" hidden = {false} translucent = {true}/>
             <ScrollView style={{padding: 2, height: '100%'}}>
 
                 <View style={{flex: 1, flexDirection: 'row',top: 10, height: '100%'}}>
@@ -43,7 +45,12 @@ export default function DianosisDetailScreen({route, navigation}){
                             <Text style={{fontSize: 12, paddingRight: 5}}>
                                 {details.symptoms}
                             </Text>
-                            
+                            <Text></Text>
+                                    <Button
+                                        title="Get Recommended Product"
+                                        color= "#347464"
+                                        onPress={OpenStore}
+                                        />
 
                         </View>
                     </View>
@@ -51,7 +58,7 @@ export default function DianosisDetailScreen({route, navigation}){
                     </TouchableOpacity> */}
                 </View>
 
-                <View style={{flex: 1, flexDirection: 'column',padding: 10, height:500 }}>
+                <View style={{flex: 1, flexDirection: 'column',padding: 10}}>
                     <View style={{width:'100%', height: '100%'}}>
                         <Text style={{color: '#347464', fontWeight: 'bold', fontSize: 16}}>Diagnosis</Text>
 
@@ -69,9 +76,10 @@ export default function DianosisDetailScreen({route, navigation}){
                         <Text style={{fontSize: 12, left: 15, top: 35,paddingRight:15}}>
                             {details.recommendation_products}
                         </Text>
-                        <View style={{left: 15,top: 45, width: 250}}>
-                            <Button 
-                                title="Shop Recommended Product"
+
+                        <View style={{left: 15,top: 55, width: 250}}>
+                            <Button
+                                title="Get Recommended Product"
                                 color= "#347464"
                                 onPress={OpenStore}
                             />

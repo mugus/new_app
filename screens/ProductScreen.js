@@ -1,65 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Image, Text, View, SafeAreaView,Button,Linking, ScrollView, TouchableOpacity } from 'react-native';
-// import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { Image, Text, View, SafeAreaView,Button,Linking, ScrollView, TouchableOpacity, StatusBar } from 'react-native';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 // import Svg, { Rect } from 'react-native-svg';
 // import ContentLoader from 'react-native-masked-loader';
 import axios from 'axios';
-const ingaboURL = "https://ingabo.rw";
-// function getMaskedElement() {
-//     return (
-//         <ScrollView>
-
-
-//             <View style={{flex: 1, flexDirection: 'row',flexWrap: 'wrap', justifyContent: 'space-around', top: 10}}>
-//                 <TouchableOpacity>
-//                     <View style={{width: 150, height: 200}}>
-//                         <Text style={{color: '#347464', fontWeight: 'bold', fontSize: 14}}></Text>
-//                         <View style={{width: 150, height: 170, margin: 7,backgroundColor: "#f0eff0", alignItems: 'center'}} />
-//                     </View>
-//                 </TouchableOpacity>
-//                 <TouchableOpacity>
-//                     <View style={{width: 150, height: 200}}>
-//                         <Text style={{color: '#347464', fontWeight: 'bold', fontSize: 14}}></Text>
-//                         <View style={{width: 150, height: 170, margin: 7,backgroundColor: "#f0eff0", alignItems: 'center'}} />
-//                     </View>
-//                 </TouchableOpacity>
-//                 <TouchableOpacity>
-//                     <View style={{width: 150, height: 200}}>
-//                         <Text style={{color: '#347464', fontWeight: 'bold', fontSize: 14}}></Text>
-//                         <View style={{width: 150, height: 170, margin: 7,backgroundColor: "#f0eff0", alignItems: 'center'}} />
-//                     </View>
-//                 </TouchableOpacity>
-//                 <TouchableOpacity>
-//                     <View style={{width: 150, height: 200}}>
-//                         <Text style={{color: '#347464', fontWeight: 'bold', fontSize: 14}}></Text>
-//                         <View style={{width: 150, height: 170, margin: 7,backgroundColor: "#f0eff0", alignItems: 'center'}} />
-//                     </View>
-//                 </TouchableOpacity>
-//                 <TouchableOpacity>
-//                     <View style={{width: 150, height: 200}}>
-//                         <Text style={{color: '#347464', fontWeight: 'bold', fontSize: 14}}></Text>
-//                         <View style={{width: 150, height: 170, margin: 7,backgroundColor: "#f0eff0", alignItems: 'center'}} />
-//                     </View>
-//                 </TouchableOpacity>
-//                 <TouchableOpacity>
-//                     <View style={{width: 150, height: 200}}>
-//                         <Text style={{color: '#347464', fontWeight: 'bold', fontSize: 14}}></Text>
-//                         <View style={{width: 150, height: 170, margin: 7,backgroundColor: "#f0eff0", alignItems: 'center'}} />
-//                     </View>
-//                 </TouchableOpacity>
-                
-//             </View>
-
-      
-//         </ScrollView>
-//     );
-//   }
-
-
-
-
-
-
+const width = '47%';
 export default function ProductScreen({navigation}){
     const [product, setProduct] = useState([]);
     const [ isloading, setIsloading ] = useState(true);
@@ -72,23 +17,27 @@ export default function ProductScreen({navigation}){
             console.log(err);
         })
       }, [])
-    //   const MaskedElement = getMaskedElement();
+      
     return(
         <SafeAreaView>
+            <StatusBar backgroundColor = "#fff" barStyle = "dark-content" hidden = {false} translucent = {true}/>
                     <ScrollView>
             {
                 isloading ? (<Text>Loading ... </Text> ):
                 (
-                        <View style={{flex: 1, flexDirection: 'row',flexWrap: 'wrap', justifyContent: 'space-around', top: 5, paddingBottom: 10 }}>
+                        <View style={{flex: 1, flexDirection: 'row',flexWrap: 'wrap', justifyContent: 'space-around', top: 5,paddingTop: 10, paddingBottom: 10,  }}>
                             {
                                 product.map((product)=>{
                                     return (
-                                        <TouchableOpacity style={{width: 180, height: 250,borderColor: '#347464',backgroundColor: '#edefea', borderRadius: 10}} key={product.product_id} onPress={()=> navigation.navigate('ProductDetails', {product_id: product.product_id, name: 'ProductDetails' })}>
-                                            <View style={{width: 150, height: 210}}>
-                                                <Text style={{color: '#347464', fontWeight: 'bold', fontSize: 15, paddingBottom: 10, padding: 10}}>{product.name}</Text>
+
+                                        <TouchableOpacity key={product.product_id} style={{padding: 20,height:300,borderRadius: 10, margin: 5,backgroundColor: "#edefea", width:width}} onPress={()=> navigation.navigate('ProductDetails', {product_id: product.product_id, name: 'ProductDetails' })}>
+                                            <View styles={{padding: 10, alignItems: 'center'}}>
+                                                <Text style={{color: '#000', fontWeight: 'bold',padding:5, fontSize: 17, textTransform: 'uppercase'}}>{product.name}</Text>
                                                 <Image source={{uri: `http://197.243.14.102:4000/uploads/${product.image}`}} style={{width: 150, height: 170}} />
                                             </View>
                                         </TouchableOpacity>
+                                        
+           
                                     )
                                 })
                             }

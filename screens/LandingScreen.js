@@ -25,6 +25,7 @@ export default function LandingScreen({navigation}){
     return(
         <>
         <SafeAreaView style={{ paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0}}>
+        <StatusBar backgroundColor = "#fff" barStyle = "dark-content" hidden = {false} translucent = {true}/>
             <ScrollView>
                 <View style={{flex: 1, flexDirection: "column", flexWrap: "nowrap",textAlign: 'center'}}>
                     <View style={{paddingTop: 20,alignItems: 'center'}}>

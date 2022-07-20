@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Image, StyleSheet, Text, View,StatusBar, Platform, SafeAreaView,Button, ScrollView, TouchableOpacity } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import axios from 'axios';
+import * as Linking from 'expo-linking';
 
 export default function ProductDetails({route, navigation}){
     const { product_id, name } = route.params;
@@ -9,10 +10,11 @@ export default function ProductDetails({route, navigation}){
     const [ isloading, setIsloading ] = useState(true);
    
     const OpenStore = async () => {
-        navigation.navigate(
-            'Browser',
-            { url: `{'https://ingabo.store'}` }
-        )
+        Linking.openURL('https://ingabo.store');
+        // navigation.navigate(
+        //     'Browser',
+        //     { url: 'https://ingabo.store' }
+        // )
     }
     // console.log("Data: ",product_id);
 
@@ -33,6 +35,7 @@ export default function ProductDetails({route, navigation}){
     console.log(isloading);
     return(
         <SafeAreaView style={{flex:1, paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0}}>
+            <StatusBar backgroundColor = "#fff" barStyle = "dark-content" hidden = {false} translucent = {true}/>
             {
                 isloading ? <Text style={{fontSize: 12, left: 15, paddingTop: 60}}>Loading......</Text> : 
                 (
@@ -60,7 +63,7 @@ export default function ProductDetails({route, navigation}){
                             </View>
                         </View>
 
-                        <View style={{flex: 1, flexDirection: 'column',padding: 5, height:500 }}>
+                        <View style={{flex: 1, flexDirection: 'column',padding: 5}}>
                             <View style={{width:'100%', height: '100%'}}>
                                 <Text style={{color: '#347464', fontWeight: 'bold', fontSize: 15,textDecorationLine: 'underline'}}>How to use</Text>
                                 <Text style={{color: '#347464', fontWeight: 'bold', fontSize: 13, left: 10,fontStyle: 'italic'}}>Pre-Conditions</Text>

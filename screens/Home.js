@@ -1,5 +1,5 @@
 import react, { useState, useEffect } from "react";
-import { Image, StyleSheet, Text, View, SafeAreaView,ScrollView, Button,TouchableOpacity,  requireNativeComponent  } from 'react-native';
+import { Image, StyleSheet, Text, View, SafeAreaView,ScrollView, Button,TouchableOpacity,  StatusBar, requireNativeComponent  } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 // import Svg, { Rect } from 'react-native-svg';
 // import ContentLoader from 'react-native-masked-loader';
@@ -58,7 +58,7 @@ export default function Home({route,navigation}){
         <SafeAreaView>
         {/* {
             isReady ? ( */}
-            
+            <StatusBar backgroundColor = "#fff" barStyle = "dark-content" hidden = {false} translucent = {true}/>
                 <ScrollView>
                     
                     <View style={{flex: 1, flexDirection: 'row',top: 10}}>

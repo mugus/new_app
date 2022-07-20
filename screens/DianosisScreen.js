@@ -1,6 +1,6 @@
 // import * as React from 'react';
 import React, { useState, useRef, useEffect } from 'react';
-import { Image, StyleSheet, Text, View, SafeAreaView,Button, ScrollView, TouchableOpacity } from 'react-native';
+import { Image, StyleSheet, Text, View, SafeAreaView,Button, ScrollView, TouchableOpacity, StatusBar } from 'react-native';
 import { Camera } from 'expo-camera';
 import { shareAsync } from 'expo-sharing';
 import * as MediaLibrary from 'expo-media-library';
@@ -110,6 +110,7 @@ console.log(diagnosisdetails);
 
     return(
         <SafeAreaView>
+            <StatusBar backgroundColor = "#fff" barStyle = "dark-content" hidden = {false} translucent = {true}/>
             <ScrollView>
                 <View style={{flex: 1, flexDirection: 'row', flexWrap: 'wrap', top: 30, justifyContent: 'space-around'}}>
                 {

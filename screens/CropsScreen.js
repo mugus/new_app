@@ -1,5 +1,5 @@
 import react, { useState, useEffect } from "react";
-import { Image, StyleSheet, Text, View, SafeAreaView,Button,ScrollView, TouchableOpacity } from 'react-native';
+import { Image, StyleSheet, Text, View, SafeAreaView,Button,ScrollView, TouchableOpacity,StatusBar } from 'react-native';
 // import Skeleton from "./Skeleton";
 import axios from 'axios';
 
@@ -24,6 +24,7 @@ export default function CropsScreen({route, navigation}){
 
     return(
         <SafeAreaView>
+            <StatusBar backgroundColor = "#fff" barStyle = "dark-content" hidden = {false} translucent = {true}/>
             <ScrollView style={{paddingRight: 10}}>
             {/* {
                 isReady ? ( */}

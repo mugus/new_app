@@ -7,6 +7,7 @@ export default function SafetyApplication ({navigation}){
 
     return(
         <SafeAreaView>
+            <StatusBar backgroundColor = "#fff" barStyle = "dark-content" hidden = {false} translucent = {true}/>
             <ScrollView>
                 <View style={{flex: 1}}>
                     <View style={{flex: 1, flexDirection: 'row', paddingTop: 15, paddingLeft: 15}}>

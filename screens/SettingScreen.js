@@ -1,10 +1,11 @@
 // import * as React from 'react';
-import { Image, StyleSheet, Text, View, SafeAreaView,Button, ScrollView, TouchableOpacity } from 'react-native';
+import { Image, StyleSheet, Text, View, SafeAreaView,Button, ScrollView, TouchableOpacity, StatusBar } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 export default function SettingScreen({navigation}){
     return(
         <SafeAreaView>
+            <StatusBar backgroundColor = "#fff" barStyle = "dark-content" hidden = {false} translucent = {true}/>
             <ScrollView>
                 <View style={{flex: 1, flexDirection: 'column'}}>
                     <View style={{alignItems: 'center', padding: 50}}>
